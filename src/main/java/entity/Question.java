@@ -21,6 +21,8 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private Set<Answer> answers;
 
+    private String test;
+
     public int getQuestionId() {
         return questionId;
     }
