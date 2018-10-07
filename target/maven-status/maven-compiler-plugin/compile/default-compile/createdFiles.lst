@@ -1,4 +1,7 @@
+controller/UserController.class
 controller/QuizControllerTest.class
 controller/QuizController.class
+repository/UserRepository.class
 app/SpringBootWebApplication.class
+entity/User.class
 controller/QuizControllerIT.class
