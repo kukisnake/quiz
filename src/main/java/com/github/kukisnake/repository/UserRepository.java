@@ -1,6 +1,6 @@
-package repository;
+package com.github.kukisnake.repository;
 
-import entity.User;
+import com.github.kukisnake.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository

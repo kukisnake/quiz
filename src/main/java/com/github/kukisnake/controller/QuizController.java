@@ -1,4 +1,4 @@
-package controller;
+package com.github.kukisnake.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,9 +15,6 @@ public class QuizController {
     @RequestMapping("/")
     public String index(Map<String, Object> model) {
         model.put("message", this.message);
-        return "welcome";
+        return "index";
     }
-
-
-
 }

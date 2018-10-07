@@ -1,4 +1,4 @@
-package entity;
+package com.github.kukisnake.entity;
 
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Question {
 
     @OneToMany(mappedBy = "question")
     private Set<Answer> answers;
-    
+
     public int getQuestionId() {
         return questionId;
     }
