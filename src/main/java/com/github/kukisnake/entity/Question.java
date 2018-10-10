@@ -9,24 +9,24 @@ import java.util.Set;
 public class Question {
 
     @Id @GeneratedValue
-    @Column(name = "question_id")
-    private int questionId;
+    @Column(name = "id")
+    private int id;
 
-    @Column(name = "question_text")
+    @Column(name = "text")
     private String questionText;
 
-    @Column(name = "question_level")
+    @Column(name = "level")
     private String questionLevel;
 
     @OneToMany(mappedBy = "question")
     private Set<Answer> answers;
 
-    public int getQuestionId() {
-        return questionId;
+    public int getId() {
+        return id;
     }
 
-    public void setQuestionId(int questionId) {
-        this.questionId = questionId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getQuestionText() {

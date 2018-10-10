@@ -7,32 +7,34 @@ import javax.persistence.*;
 public class Answer {
 
     @Id @GeneratedValue
-    @Column (name = "answer_id")
-    private int answerId;
+    @Column (name = "id")
+    private int id;
 
-    @Column (name = "answer_text")
-    private String answerText;
+    @Column (name = "text")
+    private String text;
 
     @ManyToOne
     @JoinColumn(name = "question_id" , nullable = false)
     private Question question;
 
-    public Answer() {}
-
-    public int getAnswerId() {
-        return answerId;
+    public Answer(String answerText) {
+        this.text = answerText;
     }
 
-    public void setAnswerId(int answerId) {
-        this.answerId = answerId;
+    public int getId() {
+        return id;
     }
 
-    public String getAnswerText() {
-        return answerText;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setAnswerText(String answerText) {
-        this.answerText = answerText;
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Question getQuestion() {
