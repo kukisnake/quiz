@@ -2,6 +2,7 @@ package com.github.kukisnake.controller;
 
 import com.github.kukisnake.entity.Answer;
 import com.github.kukisnake.entity.Question;
+import com.github.kukisnake.repository.AnswerRepository;
 import com.github.kukisnake.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class QuestionController {
         answerSet.add(new Answer(ans4));
 
         Question questionObject = new Question();
-        questionObject.setQuestionText(quest1);
+        questionObject.setText(quest1);
         questionObject.setAnswers(answerSet);
 
         questionRepository.save(questionObject);

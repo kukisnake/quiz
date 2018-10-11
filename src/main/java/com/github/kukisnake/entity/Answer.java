@@ -1,5 +1,7 @@
 package com.github.kukisnake.entity;
 
+import com.github.kukisnake.repository.AnswerRepository;
+
 import javax.persistence.*;
 
 @Entity

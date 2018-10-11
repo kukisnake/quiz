@@ -1,6 +1,8 @@
 package com.github.kukisnake.entity;
 
 
+import com.github.kukisnake.repository.QuestionRepository;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,10 +15,10 @@ public class Question {
     private int id;
 
     @Column(name = "text")
-    private String questionText;
+    private String text;
 
     @Column(name = "level")
-    private String questionLevel;
+    private String level;
 
     @OneToMany(mappedBy = "question")
     private Set<Answer> answers;
@@ -29,20 +31,20 @@ public class Question {
         this.id = id;
     }
 
-    public String getQuestionText() {
-        return questionText;
+    public String getText() {
+        return text;
     }
 
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getQuestionLevel() {
-        return questionLevel;
+    public String getLevel() {
+        return level;
     }
 
-    public void setQuestionLevel(String questionLevel) {
-        this.questionLevel = questionLevel;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public Set<Answer> getAnswers() {
