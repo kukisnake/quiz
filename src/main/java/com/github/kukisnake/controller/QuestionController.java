@@ -41,10 +41,10 @@ public class QuestionController {
                 String[] questionAndAnswersArray = line.split(csvSplitBy);
 
                 List<Answer> answerList = new ArrayList<>();
-                answerList.add(new Answer(questionAndAnswersArray[1]));
-                answerList.add(new Answer(questionAndAnswersArray[2]));
-                answerList.add(new Answer(questionAndAnswersArray[3]));
-                answerList.add(new Answer(questionAndAnswersArray[4]));
+
+                for (int i = 1; i < questionAndAnswersArray.length; i++) {
+                    answerList.add(new Answer(questionAndAnswersArray[i]));
+                }
 
                 Question questionObject = new Question();
                 questionObject.setText(questionAndAnswersArray[0]);
