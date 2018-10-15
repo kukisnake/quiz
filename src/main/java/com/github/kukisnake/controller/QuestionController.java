@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(path="/question")
@@ -19,6 +19,9 @@ public class QuestionController {
 
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private AnswerRepository answerRepository;
 
     @GetMapping(path="/add") // Map ONLY GET Requests
     public @ResponseBody String addQuestion () {
@@ -28,17 +31,22 @@ public class QuestionController {
         String ans3 = "3";
         String ans4 = "4";
 
-        Set<Answer> answerSet = new HashSet<>();
-        answerSet.add(new Answer(ans1));
-        answerSet.add(new Answer(ans2));
-        answerSet.add(new Answer(ans3));
-        answerSet.add(new Answer(ans4));
+        List<Answer> answerList = new ArrayList<>();
+        answerList.add(new Answer(ans1));
+        answerList.add(new Answer(ans2));
+        answerList.add(new Answer(ans3));
+        answerList.add(new Answer(ans4));
 
         Question questionObject = new Question();
         questionObject.setText(quest1);
-        questionObject.setAnswers(answerSet);
 
         questionRepository.save(questionObject);
+
+        for (Answer oneAnswer : answerList) {
+            oneAnswer.setQuestion(questionObject);
+            answerRepository.save(oneAnswer);
+        }
+
         return "Dodano pytanie";
     }
 }
