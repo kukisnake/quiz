@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(path="/question")
+@RequestMapping(path = "/question")
 public class QuestionController {
 
     @Autowired
@@ -23,30 +26,41 @@ public class QuestionController {
     @Autowired
     private AnswerRepository answerRepository;
 
-    @GetMapping(path="/add") // Map ONLY GET Requests
-    public @ResponseBody String addQuestion () {
-        String quest1 = "Które chcesz mieć wybite zęby?";
-        String ans1 = "1";
-        String ans2 = "2";
-        String ans3 = "3";
-        String ans4 = "4";
+    @GetMapping(path = "/add") // Map ONLY GET Requests
+    public @ResponseBody
+    String addQuestion() {
 
-        List<Answer> answerList = new ArrayList<>();
-        answerList.add(new Answer(ans1));
-        answerList.add(new Answer(ans2));
-        answerList.add(new Answer(ans3));
-        answerList.add(new Answer(ans4));
+        String csvFilePath = "src/main/resources/csv/q&a_list.csv";
+        String line = "";
+        String csvSplitBy = ",";
 
-        Question questionObject = new Question();
-        questionObject.setText(quest1);
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
 
-        questionRepository.save(questionObject);
+            while ((line = br.readLine()) != null) {
 
-        for (Answer oneAnswer : answerList) {
-            oneAnswer.setQuestion(questionObject);
-            answerRepository.save(oneAnswer);
+                String[] questionAndAnswersArray = line.split(csvSplitBy);
+
+                List<Answer> answerList = new ArrayList<>();
+                answerList.add(new Answer(questionAndAnswersArray[1]));
+                answerList.add(new Answer(questionAndAnswersArray[2]));
+                answerList.add(new Answer(questionAndAnswersArray[3]));
+                answerList.add(new Answer(questionAndAnswersArray[4]));
+
+                Question questionObject = new Question();
+                questionObject.setText(questionAndAnswersArray[0]);
+
+                questionRepository.save(questionObject);
+
+                for (Answer oneAnswer : answerList) {
+                    oneAnswer.setQuestion(questionObject);
+                    answerRepository.save(oneAnswer);
+                }
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
         return "Dodano pytanie";
     }
 }
