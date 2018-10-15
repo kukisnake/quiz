@@ -15,6 +15,10 @@ public class User {
 
     private String email;
 
+    private Integer maxScore;
+
+    private Integer lastScore;
+
     public Integer getId() {
         return id;
     }
@@ -39,4 +43,19 @@ public class User {
         this.email = email;
     }
 
+    public Integer getMaxScore() {
+        return maxScore;
+    }
+
+    public void setMaxScore(Integer maxScore) {
+        this.maxScore = maxScore;
+    }
+
+    public Integer getLastScore() {
+        return lastScore;
+    }
+
+    public void setLastScore(Integer lastScore) {
+        this.lastScore = lastScore;
+    }
 }
